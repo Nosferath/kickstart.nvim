@@ -164,14 +164,23 @@ vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldcolumn = '1'
-vim.o.foldtext = ''
+-- vim.o.foldtext = ''
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 1
 vim.o.foldnestmax = 4
 
+-- Quitar highlight de fold (highlight Folded guibg=nil)
+vim.api.nvim_set_hl(0, 'Folded', { guibg = nil })
+
+-- Node
+local home_dir = '/home/cyanez/'
+-- if match(system('echo -n $HOST'), a:hostname) >= 0 -- hostname es el argumento de la fn
+local node_bin = '/.nvm/versions/node/v20.12.2/bin'
+vim.g.node_host_prog = home_dir .. node_bin .. '/node'
+vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ":' . $PATH")
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
