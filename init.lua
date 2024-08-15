@@ -933,9 +933,9 @@ require('lazy').setup({
       }
     end,
   },
-  --{ -- GitHub Copilot
-  --  'github/copilot.vim',
-  --},
+  { -- GitHub Copilot
+    'github/copilot.vim',
+  },
   { -- zeorg, para tener norg-mode
     'nvim-neorg/neorg',
     lazy = false,
