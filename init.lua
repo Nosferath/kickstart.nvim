@@ -29,7 +29,7 @@ What is Kickstart?
     what your configuration is doing, and modify it to suit your needs.
 
     Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving Kickstart just the way it is for a while
+    make neovim your own! That might mean leaving Kickstart just the way it is for a while
     or immediately breaking it into modular pieces. It's up to you!
 
     If you don't know anything about Lua, I recommend taking some time to read through
@@ -824,6 +824,7 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'neorg' },
         },
       }
     end,
@@ -932,10 +933,10 @@ require('lazy').setup({
       }
     end,
   },
-  { -- GitHub Copilot
-    'github/copilot.vim',
-  },
-  { -- Neorg, para tener norg-mode
+  --{ -- GitHub Copilot
+  --  'github/copilot.vim',
+  --},
+  { -- zeorg, para tener norg-mode
     'nvim-neorg/neorg',
     lazy = false,
     version = '*',
@@ -947,9 +948,16 @@ require('lazy').setup({
           ['core.dirman'] = {
             config = {
               workspaces = {
-                notes = '~/notes',
+                zettelkasten = '~/Zettelkasten',
               },
-              default_workspace = 'notes',
+              default_workspace = 'zettelkasten',
+            },
+          },
+          ['core.dirman.utils'] = {},
+          ['core.integrations.treesitter'] = {},
+          ['core.completion'] = {
+            config = {
+              engine = 'nvim-cmp',
             },
           },
         },
