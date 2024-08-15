@@ -175,8 +175,7 @@ vim.api.nvim_set_hl(0, 'Folded', { guibg = nil })
 -- Node
 local home_dir = '/home/cyanez/'
 -- if match(system('echo -n $HOST'), a:hostname) >= 0 -- hostname es el argumento de la fn
-local node_bin = '/.nvm/versions/node/v20.12.2/bin'
-vim.g.node_host_prog = home_dir .. node_bin .. '/node'
+local node_bin = '.nvm/versions/node/v20.12.2/bin'
 vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ":' . $PATH")
 
 -- [[ Basic Keymaps ]]
@@ -964,9 +963,7 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
-  --
-  -- Agregado por mí, maneja sesiones para guardar las mismas ventanas abiertas en cada carpeta.
-  {
+  { -- Maneja sesiones para guardar las mismas ventanas abiertas en cada carpeta.
     'rmagatti/auto-session',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     lazy = false,
@@ -981,9 +978,33 @@ require('lazy').setup({
       }
     end,
   },
-  {
+  { -- GitHub Copilot
     'github/copilot.vim',
   },
+  { -- Neorg, para tener norg-mode
+    'nvim-neorg/neorg',
+    lazy = false,
+    version = '*',
+    config = function()
+      require('neorg').setup {
+        load = {
+          ['core.defaults'] = {},
+          ['core.concealer'] = {},
+          ['core.dirman'] = {
+            config = {
+              workspaces = {
+                notes = '~/notes',
+              },
+              default_workspace = 'notes',
+            },
+          },
+        },
+      }
+      vim.wo.foldlevel = 99
+      vim.wo.conceallevel = 2
+    end,
+  },
+
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
