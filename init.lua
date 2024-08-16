@@ -173,8 +173,13 @@ vim.o.foldnestmax = 4
 vim.api.nvim_set_hl(0, 'Folded', { guibg = nil })
 
 -- Node
-local home_dir = '/home/cyanez/'
--- if match(system('echo -n $HOST'), a:hostname) >= 0 -- hostname es el argumento de la fn
+-- local home_dir = '/home/cyanez/'
+-- If the environment variable $HOST is 'nos-fenix', set home_dir accordingly
+-- if vim.env.HOST == 'nos-fenix' then
+--  home_dir = '/home/nosferath/'
+-- end
+-- Alternatively, just set home_dir using the username
+local home_dir = '/home/' .. vim.fn.expand '$USER' .. '/'
 local node_bin = '.nvm/versions/node/v20.12.2/bin'
 vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ":' . $PATH")
 
@@ -965,6 +970,23 @@ require('lazy').setup({
       vim.wo.foldlevel = 99
       vim.wo.conceallevel = 2
     end,
+  },
+  { -- Integración con Tmux
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
