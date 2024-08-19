@@ -183,6 +183,9 @@ local home_dir = '/home/' .. vim.fn.expand '$USER' .. '/'
 local node_bin = '.nvm/versions/node/v20.12.2/bin'
 vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ":' . $PATH")
 
+-- Set `let g:netrw_keepdir=0` so copying works
+vim.g.netrw_keepdir = 0
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -1043,6 +1046,9 @@ require('lazy').setup({
       { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
+  },
+  { -- Obsidian.nvim
+    'epwalsh/obsidian.nvim',
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
