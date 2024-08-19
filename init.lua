@@ -166,7 +166,7 @@ vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldcolumn = '1'
 -- vim.o.foldtext = ''
 vim.o.foldlevel = 99
-vim.o.foldlevelstart = 1
+-- vim.o.foldlevelstart = 1 -- Al abrir un archivo, mostrar solo los primeros niveles de fold
 vim.o.foldnestmax = 4
 
 -- Quitar highlight de fold (highlight Folded guibg=nil)
@@ -941,7 +941,7 @@ require('lazy').setup({
   { -- GitHub Copilot
     'github/copilot.vim',
   },
-  { -- zeorg, para tener norg-mode
+  { -- Neorg, para tener norg-mode
     'nvim-neorg/neorg',
     lazy = false,
     version = '*',
@@ -949,7 +949,17 @@ require('lazy').setup({
       require('neorg').setup {
         load = {
           ['core.defaults'] = {},
-          ['core.concealer'] = {},
+          ['core.concealer'] = {
+            config = {
+              icons = {
+                todo = {
+                  undone = {
+                    icon = ' ',
+                  },
+                },
+              },
+            },
+          },
           ['core.dirman'] = {
             config = {
               workspaces = {
