@@ -192,7 +192,6 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 
--- Display diagnostics in popup
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Display diagnostics in a popup' })
 
 -- [[ Basic Keymaps ]]
@@ -1000,6 +999,21 @@ require('lazy').setup({
   -- { -- GitHub Copilot
   --   'github/copilot.vim',
   -- },
+  { -- Maneja sesiones para guardar las mismas ventanas abiertas en cada carpeta.
+    'rmagatti/auto-session',
+    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    lazy = false,
+    dependencies = {
+      'nvim-telescope/telescope.nvim', -- Only needed if you want to use sesssion lens
+    },
+    config = function()
+      require('auto-session').setup {
+        auto_session_enabled = true,
+        auto_save_enabled = true,
+        auto_restore_enabled = true,
+      }
+    end,
+  },
   { -- Neorg, para tener norg-mode
     'nvim-neorg/neorg',
     lazy = false,
@@ -1050,10 +1064,10 @@ require('lazy').setup({
       'TmuxNavigatePrevious',
     },
     keys = {
-      { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
