@@ -192,6 +192,9 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 
+-- Display diagnostics in popup
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Display diagnostics in a popup' })
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -287,6 +290,7 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      current_line_blame = true,
     },
   },
 
@@ -305,7 +309,7 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -388,7 +392,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -503,7 +507,7 @@ require('lazy').setup({
       },
     },
   },
-  { 'Bilal2453/luvit-meta', lazy = true },
+  { 'Bilal2453/luvit-meta',     lazy = true },
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
@@ -515,7 +519,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -978,7 +982,7 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
-  { -- Maneja sesiones para guardar las mismas ventanas abiertas en cada carpeta.
+  {                     -- Maneja sesiones para guardar las mismas ventanas abiertas en cada carpeta.
     'rmagatti/auto-session',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     lazy = false,
@@ -993,9 +997,9 @@ require('lazy').setup({
       }
     end,
   },
-  { -- GitHub Copilot
-    'github/copilot.vim',
-  },
+  -- { -- GitHub Copilot
+  --   'github/copilot.vim',
+  -- },
   { -- Neorg, para tener norg-mode
     'nvim-neorg/neorg',
     lazy = false,
@@ -1046,10 +1050,10 @@ require('lazy').setup({
       'TmuxNavigatePrevious',
     },
     keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
